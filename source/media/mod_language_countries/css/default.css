@@ -1,0 +1,30 @@
+/**
+ * Joomla! module - Language Countries module
+ *
+ * @author    Yireo (info@yireo.com)
+ * @copyright Copyright 2015 Yireo.com. All rights reserved
+ * @license   GNU Public License
+ * @link      http://www.yireo.com
+ */
+
+div.modal-body .row {
+    margin-left: 0;
+}
+
+div.language-choice {
+    padding: 10px;
+}
+
+div.language-choice.current {
+    border: 2px solid #ccc;
+}
+
+div.language-choice.match {
+    border: 2px solid #01a252;
+}
+
+div.redirect {
+    margin-top: 30px;
+    font-size: 120%;
+    font-weight: bold;
+}

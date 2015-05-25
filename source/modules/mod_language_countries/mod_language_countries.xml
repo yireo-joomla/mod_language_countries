@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.4" client="site" method="upgrade">
+    <name>MOD_LANGUAGE_COUNTRIES_TITLE</name>
+    <author>Jisse Reitsma (Yireo)</author>
+    <creationDate>May 2015</creationDate>
+    <copyright>Copyright (C) yireo.com All rights reserved.</copyright>
+    <license>GNU General Public License version 3 or later</license>
+    <authorEmail>jisse@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>0.0.1</version>
+    <description>MOD_LANGUAGE_COUNTRIES_DESC</description>
+
+    <files folder="site">
+        <filename module="mod_language_countries">mod_language_countries.php</filename>
+        <folder>tmpl</folder>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+    </files>
+
+    <media folder="media">
+        <folder>mod_language_countries</folder>
+    </media>
+
+    <languages folder="site/language">
+        <language tag="en-GB">en-GB.mod_language_countries.ini</language>
+        <language tag="en-GB">en-GB.mod_language_countries.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="redirect" type="list" default="1" label="MOD_LANGUAGE_COUNTRIES_PARAM_REDIRECT" description="MOD_LANGUAGE_COUNTRIES_PARAM_REDIRECT_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="redirect_time" type="text" default="30" label="MOD_LANGUAGE_COUNTRIES_PARAM_REDIRECT_TIME" description="MOD_LANGUAGE_COUNTRIES_PARAM_REDIRECT_TIME_DESC" />
+                <field name="button" type="list" default="1" label="MOD_LANGUAGE_COUNTRIES_PARAM_BUTTON" description="MOD_LANGUAGE_COUNTRIES_PARAM_BUTTON_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="mapping" addfieldpath="/modules/mod_language_countries/fields">
+                <field name="mapping" type="mapping" label="MOD_LANGUAGE_COUNTRIES_PARAM_MAPPING" />
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field name="fake_country" type="text" label="MOD_LANGUAGE_COUNTRIES_PARAM_FAKE_COUNTRY" description="MOD_LANGUAGE_COUNTRIES_PARAM_FAKE_COUNTRY_DESC" />
+                <field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+                <field name="moduleclass_sfx" type="text" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+                <field name="cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+                <field name="cachemode" type="hidden" default="itemid">
+                   <option value="itemid"></option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+
+	<updateservers>
+		<server type="extension" priority="1" name="mod_language_countries">http://www.yireo.com/updates/mod_language_countries.xml</server>
+	</updateservers>
+</extension>

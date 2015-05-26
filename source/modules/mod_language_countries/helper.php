@@ -260,6 +260,7 @@ class ModLanguageCountriesHelper
 		{
 			if (in_array($matchedCountryCode, $countryCodes))
 			{
+				$this->loadLanguageFile($languageCode);
 				return JLanguage::getInstance($languageCode);
 			}
 		}
@@ -430,5 +431,16 @@ class ModLanguageCountriesHelper
 		}
 
 		return false;
+	}
+
+	/**
+	 * Load language files in another language
+	 */
+	public function loadLanguageFile($languageCode)
+	{
+		$lang = JFactory::getLanguage();
+		$extension = 'mod_language_countries';
+		$baseDir = JPATH_SITE;
+		$lang->load($extension, $baseDir, $languageCode, true);
 	}
 }

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.4" client="site" method="upgrade">
-    <name>MOD_LANGUAGE_COUNTRIES_TITLE</name>
+    <name>MOD_LANGUAGE_COUNTRIES</name>
     <author>Jisse Reitsma (Yireo)</author>
     <creationDate>May 2015</creationDate>
     <copyright>Copyright (C) yireo.com All rights reserved.</copyright>
     <license>GNU General Public License version 3 or later</license>
     <authorEmail>jisse@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
     <description>MOD_LANGUAGE_COUNTRIES_DESC</description>
 
     <files folder="site">
         <filename module="mod_language_countries">mod_language_countries.php</filename>
         <folder>tmpl</folder>
+        <folder>helpers</folder>
+        <folder>fields</folder>
         <filename>helper.php</filename>
         <filename>index.html</filename>
     </files>

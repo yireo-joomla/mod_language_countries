@@ -17,7 +17,7 @@ $helper = new ModLanguageCountriesHelper($params);
 
 // Determine the layout
 $layout = $params->get('layout', 'default');
-$baseLayout = preg_replace('/^(.*):/', '', $layout);
+$baseLayout = 'default';
 
 if (empty($layout))
 {

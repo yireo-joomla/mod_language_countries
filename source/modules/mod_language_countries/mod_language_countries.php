@@ -38,6 +38,7 @@ $pretext = $params->get('pretext');
 $showButton = (bool) $params->get('button', 1);
 $redirectTime = (int) $params->get('redirect_time', 30);
 $redirect = (bool) $params->get('redirect', 1);
+$hideOthers = (bool) $params->get('hide_others', 0);
 
 // Load data
 $languages = $helper->getLanguagesWithMapping();

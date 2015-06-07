@@ -37,14 +37,19 @@ defined('_JEXEC') or die;
 
 			<div class="row">
 				<?php foreach ($languages as $language) : ?>
-					<?php $class = array('span3', 'language-choice'); ?>
 					<?php
+                    $class = array('span3', 'language-choice');
+
+					if ($hideOthers && $language->match == false && $language->current == false)
+					{
+						continue;
+					}
+
 					if ($language->match)
 					{
 						$class[] = 'match';
 					}
-					?>
-					<?php
+
 					if ($language->current)
 					{
 						$class[] = 'current';
@@ -60,11 +65,13 @@ defined('_JEXEC') or die;
 							</a>
 						</p>
 
+                        <?php if ($showCountries) : ?>
 						<ul class="countries">
 							<?php foreach ($language->countries as $country): ?>
 								<li><?php echo $country->label; ?></li>
 							<?php endforeach; ?>
 						</ul>
+                        <?php endif; ?>
 					</div>
 				<?php endforeach; ?>
 			</div>

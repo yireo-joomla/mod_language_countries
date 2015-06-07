@@ -40,6 +40,10 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="show_countries" type="list" default="1" label="MOD_LANGUAGE_COUNTRIES_PARAM_SHOW_COUNTRIES" description="MOD_LANGUAGE_COUNTRIES_PARAM_SHOW_COUNTRIES_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
                 <field name="hide_others" type="list" default="0" label="MOD_LANGUAGE_COUNTRIES_PARAM_HIDE_OTHERS" description="MOD_LANGUAGE_COUNTRIES_PARAM_HIDE_OTHERS_DESC">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>

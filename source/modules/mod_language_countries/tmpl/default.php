@@ -57,7 +57,7 @@ defined('_JEXEC') or die;
 					?>
 					<div class="<?php echo implode(' ', $class); ?>">
 
-						<h3><?php echo $language->image; ?> <?php echo $language->title; ?></h3>
+						<h3><?php echo $language->image; ?> <?php echo $language->title_native; ?></h3>
 
 						<p>
 							<a href="<?php echo $language->link; ?>" class="btn">

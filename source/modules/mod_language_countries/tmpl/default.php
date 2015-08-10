@@ -15,7 +15,9 @@ defined('_JEXEC') or die;
 		<div class="modal-header">
 			<a class="btn close" data-dismiss="modal" aria-hidden="true">&times;</a>
 
-			<h3><?php echo $module->title; ?></h3>
+            <?php if ($module->showtitle == 1): ?>
+                <h3><?php echo $module->title; ?></h3>
+            <?php endif; ?>
 		</div>
 
 		<div class="modal-body">

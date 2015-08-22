@@ -63,7 +63,8 @@ class ModLanguageCountriesHelper
 	{
 		$languages = $this->getLanguages();
 		$currentCountryCode = $this->getMatchedCountryCode();
-		$currentLanguageTag = JFactory::getLanguage()->getTag();
+		$currentLanguageTag = JFactory::getLanguage()
+			->getTag();
 		$foundMatchedCountry = false;
 
 		foreach ($languages as $i => &$language)
@@ -164,7 +165,8 @@ class ModLanguageCountriesHelper
 		{
 			$languageMapping = $mapping[$languageTag];
 			$countriesMapping = array();
-			$countries = $this->getCountryHelper()->getCountries();
+			$countries = $this->getCountryHelper()
+				->getCountries();
 
 			foreach ($languageMapping as $countryCode)
 			{
@@ -218,7 +220,8 @@ class ModLanguageCountriesHelper
 		}
 		else
 		{
-			$matchedCountryCode = $this->getGeoipHelper()->getCurrentCountryCode();
+			$matchedCountryCode = $this->getGeoipHelper()
+				->getCurrentCountryCode();
 		}
 
 		return $matchedCountryCode;
@@ -238,7 +241,8 @@ class ModLanguageCountriesHelper
 			return null;
 		}
 
-		$countries = $this->getCountryHelper()->getCountries();
+		$countries = $this->getCountryHelper()
+			->getCountries();
 
 		if (isset($countries[$matchedCountryCode]))
 		{
@@ -261,6 +265,7 @@ class ModLanguageCountriesHelper
 			if (in_array($matchedCountryCode, $countryCodes))
 			{
 				$this->loadLanguageFile($languageCode);
+
 				return JLanguage::getInstance($languageCode);
 			}
 		}
@@ -322,7 +327,7 @@ class ModLanguageCountriesHelper
 
 		return $this->getLanguageLink($matchedLanguage);
 	}
-	
+
 	/**
 	 * Method to add a stylesheet
 	 *
@@ -338,7 +343,8 @@ class ModLanguageCountriesHelper
 			return false;
 		}
 
-		$template = JFactory::getApplication()->getTemplate();
+		$template = JFactory::getApplication()
+			->getTemplate();
 		$document = JFactory::getDocument();
 
 		if (file_exists(JPATH_SITE . '/templates/' . $template . '/css/mod_language_countries/' . $css))
@@ -368,7 +374,8 @@ class ModLanguageCountriesHelper
 			return false;
 		}
 
-		$template = JFactory::getApplication()->getTemplate();
+		$template = JFactory::getApplication()
+			->getTemplate();
 		$document = JFactory::getDocument();
 
 		if (file_exists(JPATH_SITE . '/templates/' . $template . '/js/mod_language_countries/' . $js))
@@ -443,4 +450,98 @@ class ModLanguageCountriesHelper
 		$baseDir = JPATH_SITE;
 		$lang->load($extension, $baseDir, $languageCode, true);
 	}
+
+	/**
+	 * Convery a mixed variable into a language code
+	 *
+	 * @param mixed $language
+	 *
+	 * @return string
+	 */
+	public function objectToCode($language)
+	{
+		if (is_object($language))
+		{
+			if (method_exists($language, 'getTag'))
+			{
+				$language = $language->getTag();
+			}
+			else
+			{
+				$language = $language->lang_code;
+			}
+		}
+
+		return $language;
+	}
+
+	/**
+	 * Replacement of JText::sprintf()
+	 *
+	 * @param $string
+	 * @param $languageCode
+	 *
+	 * @return mixed|string
+	 */
+	public function sprintf($string, $languageCode)
+	{
+		$args = func_get_args();
+		array_shift($args);
+		array_shift($args);
+
+		$string = $this->_($string, $languageCode);
+		array_unshift($args, $string);
+
+		$string = call_user_func_array('sprintf', $args);
+
+		return $string;
+	}
+
+	/**
+	 * Replacement of JText::_()
+	 *
+	 * @param $string
+	 * @param $languageCode
+	 *
+	 * @return string
+	 */
+	public function _($string, $languageCode)
+	{
+		$languageCode = $this->objectToCode($languageCode);
+
+		if (empty($languageCode))
+		{
+			return JText::_($string);
+		}
+
+		$language = $this->loadStaticLanguage($languageCode);
+
+		return $language->_($string);
+	}
+
+	/**
+	 * Load a static list of languages
+	 *
+	 * @param $languageCode
+	 *
+	 * @return JLanguage
+	 */
+	public function loadStaticLanguage($languageCode)
+	{
+		static $languages = array();
+
+		if (!isset($languages[$languageCode]))
+		{
+			$language = new JLanguage($languageCode);
+			$language->load('mod_language_countries');
+			$languages[$languageCode] = $language;
+		}
+		else
+		{
+			$language = $languages[$languageCode];
+		}
+
+		return $language;
+	}
 }
+

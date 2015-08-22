@@ -43,6 +43,7 @@ $redirect = (bool) $params->get('redirect', 1);
 $languages = $helper->getLanguagesWithMapping();
 $mapping = $helper->getMapping();
 $matchedCountry = $helper->getMatchedCountry();
+$matchedLanguage = $helper->getMatchedLanguage();
 $matchedLanguageName = $helper->getMatchedLanguageName();
 $matchedLanguageLink = $helper->matchedLanguageLink();
 $isMatchedLanguageCurrent = $helper->isMatchedLanguageCurrent();

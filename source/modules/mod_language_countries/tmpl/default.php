@@ -29,11 +29,11 @@ defined('_JEXEC') or die;
 
 			<?php if (!empty($matchedCountry)) : ?>
 				<p class="location">
-					<?php echo JText::_('MOD_LANGUAGE_COUNTRIES_YOUR_LOCATION'); ?>: <?php echo $matchedCountry; ?>
+					<?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_YOUR_LOCATION', $matchedLanguage); ?>: <?php echo $matchedCountry; ?>
 				</p>
 			<?php else: ?>
 				<p class="location">
-					<?php echo JText::_('MOD_LANGUAGE_COUNTRIES_UNKNOWN_LOCATION'); ?>
+					<?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_UNKNOWN_LOCATION', $matchedLanguage); ?>
 				</p>
 			<?php endif; ?>
 
@@ -57,9 +57,15 @@ defined('_JEXEC') or die;
 						<h3><?php echo $language->image; ?> <?php echo $language->title; ?></h3>
 
 						<p>
-							<a href="<?php echo $language->link; ?>" class="btn">
-								<?php echo JText::_('MOD_LANGUAGE_COUNTRIES_CONTINUE'); ?>
-							</a>
+                            <?php if ($language->current) : ?>
+                            <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">
+                                <?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_CONTINUE', $language); ?>
+                            </a>
+                            <?php else: ?>
+                            <a href="<?php echo $language->link; ?>" class="btn">
+                                <?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_CONTINUE', $language); ?>
+                            </a>
+                            <?php endif; ?>
 						</p>
 
 						<ul class="countries">
@@ -73,16 +79,16 @@ defined('_JEXEC') or die;
 
 			<?php if ($redirect && $matchedLanguageName) : ?>
 				<div class="redirect">
-					<?php echo JText::sprintf('MOD_LANGUAGE_COUNTRIES_COUNTDOWN_MESSAGE', $matchedLanguageName); ?>
+					<?php echo $helper->sprintf('MOD_LANGUAGE_COUNTRIES_COUNTDOWN_MESSAGE', $matchedLanguage, $matchedLanguageName); ?>
 					<span class="countdown-timer"><?php echo $redirectTime; ?></span>
-					<?php echo JText::_('MOD_LANGUAGE_COUNTRIES_COUNTDOWN_SECONDS'); ?>
+					<?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_COUNTDOWN_SECONDS', $matchedLanguage); ?>
 				</div>
 			<?php endif; ?>
 		</div>
 
 		<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal"
-			   aria-hidden="true"><?php echo JText::_('MOD_LANGUAGE_COUNTRIES_MODAL_CLOSE'); ?></a>
+			   aria-hidden="true"><?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_MODAL_CLOSE', $matchedLanguage); ?></a>
 		</div>
 	</div>
 
@@ -102,6 +108,6 @@ defined('_JEXEC') or die;
 
 <?php if ($showButton == true): ?>
 	<div id="languagecountries-button">
-		<a href="#" class="btn"><?php echo JText::_('MOD_LANGUAGE_COUNTRIES_SHOW_MODAL'); ?></a>
+		<a href="#" class="btn"><?php echo $helper->_('MOD_LANGUAGE_COUNTRIES_SHOW_MODAL', $matchedLanguage); ?></a>
 	</div>
 <?php endif; ?>

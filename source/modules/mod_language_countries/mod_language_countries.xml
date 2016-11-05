@@ -71,6 +71,6 @@
     </config>
 
 	<updateservers>
-		<server type="extension" priority="1" name="mod_language_countries">http://www.yireo.com/updates/mod_language_countries.xml</server>
+		<server type="extension" priority="1" name="mod_language_countries">https://www.yireo.com/updates/mod_language_countries.xml</server>
 	</updateservers>
 </extension>
